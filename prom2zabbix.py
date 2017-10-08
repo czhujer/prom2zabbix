@@ -31,10 +31,10 @@ action = args.action.lower()
 service = args.service.lower()
 debug = args.debug
 
-if args.itemname == "":
-    item_name = ""
-else:
+if args.itemname:
     item_name = args.itemname.lower()
+else:
+    item_name = ""
 
 url = "http://127.0.0.1:9090/api/v1"
 if debug:
