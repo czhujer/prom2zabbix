@@ -40,8 +40,9 @@ if action == 'discovery':
           print("DEBUG: url: " + url)
       getDiscovery(url,debug)
     else:
-      print("Wrong service name!");
+      print("ERROR: Wrong service name!");
       parser.print_help()
+      exit(1);
 
 elif action == 'get':
 
@@ -51,5 +52,4 @@ elif action == 'get':
 
 else:
     parser.print_help()
-
-
+    exit(1);
