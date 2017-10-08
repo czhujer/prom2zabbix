@@ -3,6 +3,7 @@
 import argparse
 
 from prom2zabbix_lib import getDiscovery
+from prom2zabbix_lib import getValue
 
 #import sys
 
@@ -19,6 +20,8 @@ parser.add_argument('--action', metavar='action', required=True,
                    help='action to process: discovery | get')
 parser.add_argument('--service', metavar='service', required=True,
                    help='service to process: up')
+parser.add_argument('--itemname', metavar='itemname',
+                   help='item name to get value')
 parser.add_argument('--debug', metavar='debug', type=int,
                    help='debug mode enable (1)')
 
@@ -27,6 +30,11 @@ args = parser.parse_args()
 action = args.action.lower()
 service = args.service.lower()
 debug = args.debug
+
+if args.itemname == "":
+    item_name = ""
+else:
+    item_name = args.itemname.lower()
 
 url = "http://127.0.0.1:9090/api/v1"
 if debug:
@@ -42,14 +50,23 @@ if action == 'discovery':
     else:
       print("ERROR: Wrong service name!");
       parser.print_help()
-      exit(1);
+      exit(2)
 
 elif action == 'get':
 
-    print("Not impemented yet!");
-    exit(1);
-    #getStatus(serviceName)
+    if item_name == "":
+      print("ERROR: Wrong item name!");
+      parser.print_help()
+      exit(2)
+
+    if service == "up":
+      url = url + "/query?query=up{job=\"" + item_name + "\"}"
+      getValue(url,debug,item_name)
+    else:
+      print("ERROR: Wrong service name!");
+      parser.print_help()
+      exit(2)
 
 else:
     parser.print_help()
-    exit(1);
+    exit(1)

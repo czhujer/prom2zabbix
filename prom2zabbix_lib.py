@@ -42,3 +42,24 @@ def getDiscovery(url,debug=0):
     zbx_items_final  = '{\n\t"data": [\n' + zbx_items_final + '\n\n\t]\n}\n'
     print(zbx_items_final)
 
+def getValue(url,debug,item_name):
+
+    results = requests.get(url).text
+    item_value = ""
+
+    if debug:
+        print("DEBUG: results: " + results)
+
+    results_parsed = json.loads(results)
+    results_data = results_parsed['data']['result']
+
+    if debug:
+        print("DEBUG: results_data: " + json.dumps(results_data))
+
+    for value in results_data:
+        item_value = value['value'][1]
+
+    if item_value == "":
+        print("0")
+    else:
+        print(item_value)
