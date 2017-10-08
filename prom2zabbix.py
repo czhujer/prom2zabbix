@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser(description='prom2zabbix bridge')
 parser.add_argument('--action', metavar='action', required=True,
                    help='action to process: discovery | get')
 parser.add_argument('--service', metavar='service', required=True,
-                   help='service to process: prometheus')
+                   help='service to process: up')
 parser.add_argument('--debug', metavar='debug', type=int,
                    help='debug mode enable (1)')
 
@@ -34,7 +34,7 @@ if debug:
 
 if action == 'discovery':
 
-    if service == "prometheus":
+    if service == "up":
       url = url + "/query?query=up"
       if debug:
           print("DEBUG: url: " + url)
