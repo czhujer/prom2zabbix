@@ -42,6 +42,36 @@ def getDiscovery(url,debug=0):
     zbx_items_final  = '{\n\t"data": [\n' + zbx_items_final + '\n\n\t]\n}\n'
     print(zbx_items_final)
 
+def getDiscovery2(url,debug=0):
+    results = requests.get(url).text
+    results_parsed = json.loads(results)
+    results_data = results_parsed['data']
+
+    if debug:
+        print("DEBUG: results_data: " + json.dumps(results_data))
+
+    service_loop_id=0
+    zbx_items_final = ""
+    zbx_items = ""
+
+    for item in results_data['result']:
+        name = item['metric']['host'] + "--" + item['metric']['code']
+
+        zbx_item1 = '"{#ITEMNAME}": ' + '"' + name + '"'
+
+        if service_loop_id == 0:
+            zbx_items = ''
+        else:
+            zbx_items = ',\n'
+
+        zbx_items += '\t{\n\t\t' + zbx_item1 + '\n\t}'
+
+        zbx_items_final += zbx_items
+        service_loop_id+=1
+
+    zbx_items_final  = '{\n\t"data": [\n' + zbx_items_final + '\n\n\t]\n}\n'
+    print(zbx_items_final)
+
 def getValue(url,debug,item_name):
 
     results = requests.get(url).text

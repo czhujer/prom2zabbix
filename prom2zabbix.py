@@ -3,6 +3,7 @@
 import argparse
 
 from prom2zabbix_lib import getDiscovery
+from prom2zabbix_lib import getDiscovery2
 from prom2zabbix_lib import getValue
 
 #import sys
@@ -19,7 +20,7 @@ parser = argparse.ArgumentParser(description='prom2zabbix bridge')
 parser.add_argument('--action', metavar='action', required=True,
                    help='action to process: discovery | get')
 parser.add_argument('--service', metavar='service', required=True,
-                   help='service to process: up')
+                   help='service to process: up | nginx_server_requests')
 parser.add_argument('--itemname', metavar='itemname',
                    help='item name to get value')
 parser.add_argument('--debug', metavar='debug', type=int,
@@ -47,6 +48,11 @@ if action == 'discovery':
       if debug:
           print("DEBUG: url: " + url)
       getDiscovery(url,debug)
+    elif service == "nginx_server_requests":
+      url = url + "/query?query=nginx_server_requests"
+      if debug:
+          print("DEBUG: url: " + url)
+      getDiscovery2(url,debug)
     else:
       print("ERROR: Wrong service name!");
       parser.print_help()
