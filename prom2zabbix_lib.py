@@ -55,9 +55,8 @@ def getDiscovery2(url,debug=0):
     zbx_items = ""
 
     for item in results_data['result']:
-        name = item['metric']['host'] + "--" + item['metric']['code']
 
-        zbx_item1 = '"{#ITEMNAME}": ' + '"' + name + '"'
+        zbx_item1 = '"{#ITEMNAME}": ' + '"' + item['metric']['host'] + '"'
 
         if service_loop_id == 0:
             zbx_items = ''

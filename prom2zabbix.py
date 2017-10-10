@@ -71,6 +71,7 @@ elif action == 'get':
     elif service == "nginx_server_requests":
       params = item_name.split('--')
       url = url + "/query?query=" + service + "{host=\"" + params[0] + "\",code=\"" + params[1] +"\"}"
+      getValue(url,debug,item_name)
     else:
       print("ERROR: Wrong service name!");
       parser.print_help()
