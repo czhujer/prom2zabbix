@@ -1,0 +1,14 @@
+
+module zabbixagent-prom2zabbix 1.0;
+
+require {
+	type websm_port_t;
+	type zabbix_agent_t;
+	class tcp_socket name_connect;
+}
+
+#============= zabbix_agent_t ==============
+
+allow zabbix_agent_t websm_port_t:tcp_socket name_connect;
+
+
