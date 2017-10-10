@@ -49,7 +49,7 @@ if action == 'discovery':
           print("DEBUG: url: " + url)
       getDiscovery(url,debug)
     elif service == "nginx_server_requests":
-      url = url + "/query?query=nginx_server_requests"
+      url = url + "/query?query=" + service + "{code=\"2xx\"}"
       if debug:
           print("DEBUG: url: " + url)
       getDiscovery2(url,debug)
