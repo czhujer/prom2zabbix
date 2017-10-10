@@ -8,7 +8,7 @@ from prom2zabbix_lib import getValue
 
 #import sys
 
-#import string
+import string
 #import json
 #import requests
 #import socket
@@ -68,6 +68,9 @@ elif action == 'get':
     if service == "up":
       url = url + "/query?query=up{job=\"" + item_name + "\"}"
       getValue(url,debug,item_name)
+    elif service == "nginx_server_requests":
+      params = item_name.split('--')
+      url = url + "/query?query=" + service + "{host=\"" + params[0] + "\",code=\"" + params[1] +"\"}"
     else:
       print("ERROR: Wrong service name!");
       parser.print_help()

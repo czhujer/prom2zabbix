@@ -78,7 +78,10 @@ def getValue(url,debug,item_name):
     item_value = ""
 
     if debug:
-        print("DEBUG: results: " + results)
+        print("DEBUG: get url: " + url)
+
+    if debug:
+        print("DEBUG: results json: " + results)
 
     results_parsed = json.loads(results)
     results_data = results_parsed['data']['result']
