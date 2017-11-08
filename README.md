@@ -28,7 +28,7 @@ linux# yum install python34 python34-urllib3 python34-requests -y
 
 service: up
 
-``
+```
 [root@linux prom2zabbix]# ./prom2zabbix.py --action=discovery --service up
 {
     "data": [
