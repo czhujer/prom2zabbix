@@ -95,7 +95,7 @@ service: nginx_server_requests
 1018
 ```
 
-### Authors
+## Authors
 
 * Patrik Majer (@czhujer) <patrik.majer@sugarfactory.cz>
 
