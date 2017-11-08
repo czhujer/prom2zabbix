@@ -55,6 +55,7 @@ service: up
 
 service: nginx_server_requests
 
+```
 [root@linux prom2zabbix]# ./prom2zabbix.py --action=discovery --service nginx_server_requests
 {
     "data": [
@@ -76,6 +77,7 @@ service: nginx_server_requests
 
     ]
 }
+```
 
 ### get values for item
 
